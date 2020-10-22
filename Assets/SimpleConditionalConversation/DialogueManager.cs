@@ -35,14 +35,15 @@ public class DialogueManager : MonoBehaviour
 	void Update()
 	{
 		// An example of getting a line of dialogue.
-	    if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
 			Debug.Log(DialogueManager.scc.getSCCLine("Emma"));
 		}
 		
 		// An example of modifying the state outside of the DialogueManager (e.g. you could put this in some
 		// OnTriggerEnter or something)
-	    if (Input.GetKeyDown(KeyCode.G)) {
+		if (Input.GetKeyDown(KeyCode.G)) {
 			scc.setGameStateValue("playerWearing", "equals", "Green shirt");
+			Debug.Log("Emma puts on a green shirt.");
 		}
 	}
 }

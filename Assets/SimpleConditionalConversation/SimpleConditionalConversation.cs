@@ -142,6 +142,8 @@ public class SimpleConditionalConversation
 			}
 		} else if (leftValue is bool) {
 			bool leftBool = (bool)leftValue;
+			right = right.ToString().ToLower();
+			right = bool.Parse((string)right);
 			//This means we can this as a bool
 			if (op == "equals") {
 				return leftBool == (bool)right;
