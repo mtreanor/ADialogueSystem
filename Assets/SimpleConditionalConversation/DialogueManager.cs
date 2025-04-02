@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
 	public static SimpleConditionalConversation scc;
+
+	public static Action<string, string> DialogueAction;
 
 	// NOTE: When you do not use the google sheet option, it is expecting the file
 	// to be named "data.csv" and for it to be in the Resources folder in Assets.
@@ -28,7 +31,10 @@ public class DialogueManager : MonoBehaviour
 	public static void LoadInitialSCCState()
 	{
 		// Example of setting the initial state:
-		//scc.setGameStateValue("playerWearing", "equals", "Green shirt");
+		// NOTE: If you are putting a number or bool, make sure not to store them
+		// as strings.
+		//
+		// scc.setGameStateValue("playerWearing", "equals", "Green shirt");
 	}
 	
 	// Update is called once per frame
@@ -36,7 +42,9 @@ public class DialogueManager : MonoBehaviour
 	{
 		// An example of getting a line of dialogue.
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			Debug.Log(DialogueManager.scc.getSCCLine("Emma"));
+			string line = DialogueManager.scc.getSCCLine("Mike");
+			Debug.Log("Mike says: " + line);
+			DialogueAction?.Invoke("Mike", line);
 		}
 		
 		// An example of modifying the state outside of the DialogueManager (e.g. you could put this in some
